@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration status="WARN">
+    <appenders>
+      <!--  Console 控制台输出及输出格式-->
+
+
+   <!--
+        <Console name="Console" taget="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}]
+            [%p] - %1 -%m%n "/>
+        </Console>-->
+
+
+        <!--RollingFile本地的输出路径及输出格式-->
+        <RollingFile name="RollingFileInfo" fileName="D:/info.log"
+        filePattern="D:/$${date:YYYY-MM}/info%d{yyyy-MM-dd} - %i.log"  >
+           <!-- filter日志过滤器，不低于info级别-->
+      <Filters>
+          <ThresholdFilter level="INFO"/>
+      </Filters>
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}]
+            [%p] - %1 -%m%n "/>
+            <Policies>
+                    <TimeBasedTriggeringPolicy/>
+                    <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingFile>
+    </appenders>
+    <loggers>
+        <root level="all">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFileInfo"/>
+        </root>
+    </loggers>
+</Configuration>
